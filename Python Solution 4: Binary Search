@@ -1,0 +1,17 @@
+from typing import List
+import math
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        if not nums:
+            return -1
+
+        half = math.floor((len(nums)) / 2)
+
+        if nums[half] == target:
+            return half
+        elif nums[half] < target:
+            result = self.search(nums[half + 1:], target)
+            return half + 1 + result if result != -1 else -1
+        else:
+            return self.search(nums[:half], target)
