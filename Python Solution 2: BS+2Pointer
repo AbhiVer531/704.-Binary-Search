@@ -1,0 +1,19 @@
+import math
+from typing import List
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        def binary_search(left, right):
+            if left > right:
+                return -1
+            
+            half = math.floor((left + right) / 2)
+            
+            if nums[half] == target:
+                return half
+            elif nums[half] > target:
+                return binary_search(left, half - 1)
+            else:
+                return binary_search(half + 1, right)
+        
+        return binary_search(0, len(nums) - 1)
